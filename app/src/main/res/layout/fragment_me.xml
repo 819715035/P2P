@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <cn.cndoppler.p2p.ui.CommonTitleView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_context="我的资产">
+    </cn.cndoppler.p2p.ui.CommonTitleView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:text="我的资产"
+        android:textColor="@color/title_text"
+        />
+
+</LinearLayout>
