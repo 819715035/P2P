@@ -94,7 +94,7 @@ public class HomeFragment extends Fragment {
                 tvHomeYearrate.setText(product.yearRate + "%");
 
                 //设置banner样式
-                banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE);
+                banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
                 //设置图片加载器
                 banner.setImageLoader(new GlideImageLoader());
                 //设置图片地址构成的集合

@@ -1,11 +1,13 @@
 package cn.cndoppler.p2p.ui;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,14 +21,16 @@ import cn.cndoppler.p2p.util.UIUtils;
 public class CommonTitleView extends LinearLayout {
 
     private TextView titleTv;
-    private View backIv;
+    private ImageView backIv;
     private boolean showLeftView,showRightView;
-    private View rightIv;
+    private ImageView rightIv;
     private int titleSize;
     private int titleColor;
     private String titleContent;
     private View view;
     private OnClickListener leftListener,rightListener;
+    private int leftDrawable;
+    private int rightDrawable;
 
     public CommonTitleView(Context context) {
         this(context,null);
@@ -49,8 +53,8 @@ public class CommonTitleView extends LinearLayout {
      */
     private void initView() {
         titleTv= (TextView) view.findViewById(R.id.title_tv);
-        backIv=  view.findViewById(R.id.back_iv);
-        rightIv= view.findViewById(R.id.right_iv);
+        backIv= (ImageView) view.findViewById(R.id.back_iv);
+        rightIv= (ImageView) view.findViewById(R.id.right_iv);
     }
 
     /**
@@ -60,8 +64,12 @@ public class CommonTitleView extends LinearLayout {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.commonTitleView);
         //是否显示左边，默认不显示
         showLeftView = typedArray.getBoolean(R.styleable.commonTitleView_show_left,false);
+        //左边图标
+        leftDrawable = typedArray.getResourceId(R.styleable.commonTitleView_left_drawable, R.drawable.left);
         //是否显示右边，默认不显示
         showRightView = typedArray.getBoolean(R.styleable.commonTitleView_show_right,false);
+        //右边图标
+        rightDrawable = typedArray.getResourceId(R.styleable.commonTitleView_right_drawable, R.drawable.my_setting_icon);
         //标题内容
         titleContent = typedArray.getString(R.styleable.commonTitleView_title_context);
         //标题颜色,默认为#26B8EE颜色
@@ -80,6 +88,8 @@ public class CommonTitleView extends LinearLayout {
         titleTv.setTextColor(titleColor);
         titleTv.setTextSize(titleSize);
         titleTv.setText(titleContent);
+        backIv.setImageResource(leftDrawable);
+        rightIv.setImageResource(rightDrawable);
         if (showLeftView) {
             backIv.setVisibility(VISIBLE);
             backIv.setOnClickListener(new OnClickListener() {

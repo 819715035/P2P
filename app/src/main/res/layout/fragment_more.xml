@@ -8,7 +8,8 @@
     <cn.cndoppler.p2p.ui.CommonTitleView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title_context="更多">
+        app:title_context="更多"
+        >
     </cn.cndoppler.p2p.ui.CommonTitleView>
     <TextView
         android:layout_width="wrap_content"
