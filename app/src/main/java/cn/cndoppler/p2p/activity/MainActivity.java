@@ -19,10 +19,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.cndoppler.p2p.R;
+import cn.cndoppler.p2p.common.ActivityManager;
 import cn.cndoppler.p2p.fragment.HomeFragment;
 import cn.cndoppler.p2p.fragment.InverstFragment;
 import cn.cndoppler.p2p.fragment.MeFragment;
 import cn.cndoppler.p2p.fragment.MoreFragment;
+import cn.cndoppler.p2p.util.LogUtils;
 import cn.cndoppler.p2p.util.ToastUtils;
 
 public class MainActivity extends FragmentActivity {
@@ -65,7 +67,18 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        ActivityManager.getInstance().add(this);
         initData();
+       /*// 模拟异常
+        String str = null;
+        LogUtils.e("str=================");
+        //try {
+            if(str.equals("abc")){
+                LogUtils.e("str = "+str);
+            }
+       // } catch (Exception e) {
+        //    e.printStackTrace();
+       // }*/
     }
 
     /**

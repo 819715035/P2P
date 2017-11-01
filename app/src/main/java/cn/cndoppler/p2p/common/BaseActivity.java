@@ -3,6 +3,8 @@ package cn.cndoppler.p2p.common;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 
 
