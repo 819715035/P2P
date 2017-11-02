@@ -5,7 +5,7 @@ package cn.cndoppler.p2p.common;
  * 配置网络请求相关的地址
  */
 public class AppNetConfig {
-
+    //http://47.93.118.241:8081/P2PInvest/
     public static final String IPADDRESS = "47.93.118.241";
 
     public static final String BASE_URL = "http://" + IPADDRESS + ":8081/P2PInvest/";

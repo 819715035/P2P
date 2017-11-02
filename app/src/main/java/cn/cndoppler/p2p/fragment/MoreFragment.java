@@ -7,12 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.loopj.android.http.RequestParams;
+
 import cn.cndoppler.p2p.R;
+import cn.cndoppler.p2p.common.BaseFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MoreFragment extends Fragment {
+public class MoreFragment extends BaseFragment {
 
 
     public MoreFragment() {
@@ -21,10 +24,23 @@ public class MoreFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_more, container, false);
+    protected void initData(String content) {
+
+    }
+
+    @Override
+    protected RequestParams getParams() {
+        return null;
+    }
+
+    @Override
+    protected String getUrl() {
+        return null;
+    }
+
+    @Override
+    public int getLayout() {
+        return R.layout.fragment_more;
     }
 
 }

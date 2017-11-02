@@ -1,5 +1,6 @@
 package cn.cndoppler.p2p.util;
 
+import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 import android.view.View;
@@ -50,5 +51,19 @@ public class UIUtils {
     public static String[] getStringArr(int strArrId){
         String[] stringArray = getContext().getResources().getStringArray(strArrId);
         return stringArray;
+    }
+
+    //保证runnable中的操作在主线程中执行
+    public static void runOnUiThread(Runnable runnable){
+        if (isInMainThread()){
+            runnable.run();
+        }else{
+            UIUtils.getHandler().post(runnable);
+        }
+    }
+    //是否在主线程
+    private static boolean isInMainThread() {
+        int myId = android.os.Process.myPid();
+        return myId == MyApplication.mainThreadId;
     }
 }

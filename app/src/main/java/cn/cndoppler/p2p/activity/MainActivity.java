@@ -69,16 +69,6 @@ public class MainActivity extends FragmentActivity {
         ButterKnife.bind(this);
         ActivityManager.getInstance().add(this);
         initData();
-       /*// 模拟异常
-        String str = null;
-        LogUtils.e("str=================");
-        //try {
-            if(str.equals("abc")){
-                LogUtils.e("str = "+str);
-            }
-       // } catch (Exception e) {
-        //    e.printStackTrace();
-       // }*/
     }
 
     /**
