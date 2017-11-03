@@ -32,6 +32,7 @@ public abstract class LoadingPage extends FrameLayout{
     private View view_success;
     private ViewGroup.LayoutParams params;
     private ResultState resultState;
+    private Context context;
 
     public LoadingPage(Context context) {
         this(context, null);
@@ -43,6 +44,7 @@ public abstract class LoadingPage extends FrameLayout{
 
     public LoadingPage(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.context = context;
         init();
     }
 
@@ -93,7 +95,7 @@ public abstract class LoadingPage extends FrameLayout{
         view_empty.setVisibility(state_current == STATE_EMPTY ? View.VISIBLE : View.INVISIBLE);
 
         if (view_success == null) {
-            view_success = UIUtils.getView(layoutId());
+            view_success = View.inflate(context,layoutId(),null);
             addView(view_success, params);
         }
 

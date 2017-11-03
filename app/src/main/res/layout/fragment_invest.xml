@@ -8,14 +8,20 @@
     <cn.cndoppler.p2p.ui.CommonTitleView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title_context="投资">
+        app:title_context="投资"
+        >
     </cn.cndoppler.p2p.ui.CommonTitleView>
-    <TextView
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:text="投资"
-        android:textColor="@color/title_text"
-        />
+        >
+
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/product_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
 
 </LinearLayout>

@@ -8,22 +8,4 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     
-    <!--导航标题属性-->
-    <!--顶部导航栏 -->
-    <declare-styleable name="commonTitleView">
-        <!-- 是否显示左边的回退按钮-->
-        <attr name="show_left" format="boolean"/>
-        <!-- 左边按钮资源-->
-        <attr name="left_drawable" format="reference"/>
-        <!-- 标题内容 -->
-        <attr name="title_context" format="string"/>
-        <!-- 是否显示右侧 -->
-        <attr name="show_right" format="boolean"/>
-        <!-- 右边按钮资源-->
-        <attr name="right_drawable" format="reference"/>
-        <!--标题字体大小 -->
-        <attr name="title_size" format="dimension"/>
-        <!--标题颜色-->
-        <attr name="title_color" format="color"/>
-    </declare-styleable>
 </resources>

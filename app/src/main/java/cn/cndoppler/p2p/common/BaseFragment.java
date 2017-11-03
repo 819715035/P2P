@@ -12,7 +12,6 @@ import com.loopj.android.http.RequestParams;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.cndoppler.p2p.ui.LoadingPage;
-import cn.cndoppler.p2p.util.UIUtils;
 
 /**
  * Created by Administrator on 2017/11/2 0002.
