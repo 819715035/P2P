@@ -75,9 +75,9 @@ public class CommonTitleView extends LinearLayout {
         //标题颜色,默认为#26B8EE颜色
         titleColor = typedArray.getColor(R.styleable.commonTitleView_title_color,Color.parseColor("#26B8EE"));
         //标题文字大小,默认20sp
-        int  textSize = typedArray.getDimensionPixelSize(R.styleable.commonTitleView_title_size, UIUtils.dp2px(context,20));
+        int  textSize = typedArray.getDimensionPixelSize(R.styleable.commonTitleView_title_size, UIUtils.dp2px(20));
         //转换成dp
-        titleSize = UIUtils.px2dp(context,textSize);
+        titleSize = UIUtils.px2dp(textSize);
     }
 
 

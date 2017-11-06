@@ -52,13 +52,13 @@ public class RoundProgress extends View {
     //设置控件属性
     private void setAttrs(Context context,AttributeSet attrs) {
         TypedArray styleable = context.obtainStyledAttributes(attrs,R.styleable.RoundProgress);
-        lineHeight = styleable.getDimension(R.styleable.RoundProgress_lineHeight,UIUtils.dp2px(context,10));
+        lineHeight = styleable.getDimension(R.styleable.RoundProgress_lineHeight,UIUtils.dp2px(10));
         progress = styleable.getFloat(R.styleable.RoundProgress_progress,0);
         maxProgress = styleable.getFloat(R.styleable.RoundProgress_maxProgress,100);
         roundColor = styleable.getColor(R.styleable.RoundProgress_roundColor,getResources().getColor(R.color.product_detail_common));
         arcColor = styleable.getColor(R.styleable.RoundProgress_arcColor,getResources().getColor(R.color.round_red_common));
         textColor = styleable.getColor(R.styleable.RoundProgress_textColor,getResources().getColor(R.color.text_progress));
-        textSize = styleable.getDimension(R.styleable.RoundProgress_textSize,UIUtils.dp2px(context,12));
+        textSize = styleable.getDimension(R.styleable.RoundProgress_textSize,UIUtils.dp2px(12));
         styleable.recycle();
     }
 

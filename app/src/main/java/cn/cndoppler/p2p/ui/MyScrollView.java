@@ -53,7 +53,7 @@ public class MyScrollView extends ScrollView {
             case MotionEvent.ACTION_MOVE:
                 int absX = (int) Math.abs(ev.getX() - downX);
                 int absY = (int) Math.abs(ev.getY() - downY);
-                if (absY>absX && absY> UIUtils.dp2px(getContext(),10)){
+                if (absY>absX && absY> UIUtils.dp2px(10)){
                     return true;
                 }
                 break;

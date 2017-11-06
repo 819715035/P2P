@@ -52,7 +52,7 @@ public class ProductAdapter extends BaseAdapter {
             TextView tv = new TextView(parent.getContext());
             tv.setText("与子同行，奈何覆舟");
             tv.setTextColor(UIUtils.getColor(R.color.text_progress));
-            tv.setTextSize(UIUtils.dp2px(UIUtils.getContext(), 20));
+            tv.setTextSize(UIUtils.dp2px(20));
             return tv;
         }
 

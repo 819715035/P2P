@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.cndoppler.p2p.R;
 import cn.cndoppler.p2p.common.ActivityManager;
+import cn.cndoppler.p2p.common.BaseActivity;
 import cn.cndoppler.p2p.fragment.HomeFragment;
 import cn.cndoppler.p2p.fragment.InverstFragment;
 import cn.cndoppler.p2p.fragment.MeFragment;
@@ -27,7 +28,7 @@ import cn.cndoppler.p2p.fragment.MoreFragment;
 import cn.cndoppler.p2p.util.LogUtils;
 import cn.cndoppler.p2p.util.ToastUtils;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends BaseActivity {
 
 
     @BindView(R.id.fl_main)
