@@ -1,12 +1,20 @@
 package cn.cndoppler.p2p.common;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
+
+import com.loopj.android.http.AsyncHttpClient;
+
+import cn.cndoppler.p2p.bean.User;
 
 
 /**
@@ -14,13 +22,20 @@ import android.support.v7.app.AppCompatActivity;
  */
 public class BaseActivity extends AppCompatActivity
 {
+    public AsyncHttpClient client = new AsyncHttpClient();
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // 去掉窗口标题
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+    }
 
     /**
      * Activity跳转
      *
      * @param pClass
      */
-    protected void openActivity(Class<?> pClass) {
+    public void openActivity(Class<?> pClass) {
         openActivity(pClass, null);
     }
 
@@ -30,7 +45,7 @@ public class BaseActivity extends AppCompatActivity
      * @param pClass
      * @param pBundle
      */
-    protected void openActivity(Class<?> pClass, Bundle pBundle) {
+    public void openActivity(Class<?> pClass, Bundle pBundle) {
         openActivity(pClass, pBundle, null);
     }
 
@@ -41,7 +56,7 @@ public class BaseActivity extends AppCompatActivity
      * @param pBundle
      * @param uri
      */
-    protected void openActivity(Class<?> pClass, Bundle pBundle, Uri uri) {
+    public void openActivity(Class<?> pClass, Bundle pBundle, Uri uri) {
         Intent intent = new Intent(this, pClass);
         if (pBundle != null) {
             intent.putExtras(pBundle);
@@ -57,7 +72,7 @@ public class BaseActivity extends AppCompatActivity
      *
      * @param pAction
      */
-    protected void openActivity(String pAction) {
+    public void openActivity(String pAction) {
         openActivity(pAction, null);
     }
 
@@ -67,7 +82,7 @@ public class BaseActivity extends AppCompatActivity
      * @param pAction
      * @param pBundle
      */
-    protected void openActivity(String pAction, Bundle pBundle) {
+    public void openActivity(String pAction, Bundle pBundle) {
         openActivity(pAction, pBundle, null);
     }
 
@@ -78,7 +93,7 @@ public class BaseActivity extends AppCompatActivity
      * @param pBundle
      * @param uri
      */
-    protected void openActivity(String pAction, Bundle pBundle, Uri uri) {
+    public void openActivity(String pAction, Bundle pBundle, Uri uri) {
         Intent intent = new Intent(pAction);
         if (pBundle != null) {
             intent.putExtras(pBundle);
@@ -89,4 +104,30 @@ public class BaseActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    //销毁所有的activity
+    public void removeAll(){
+        ActivityManager.getInstance().removeAll();
+    }
+
+    //保存用户信息
+    public void saveUser(User user){
+        SharedPreferences sp = this.getSharedPreferences("user_info", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("name",user.getName());
+        editor.putString("imageurl",user.getImageurl());
+        editor.putBoolean("iscredit", user.isCredit());
+        editor.putString("phone",user.getPhone());
+        editor.commit();//必须提交，否则保存不成功
+    }
+
+    //读取用户信息
+    public User readUser(){
+        SharedPreferences sp = this.getSharedPreferences("user_info", Context.MODE_PRIVATE);
+        User user = new User();
+        user.setName(sp.getString("name",""));
+        user.setImageurl(sp.getString("imageurl", ""));
+        user.setPhone(sp.getString("phone", ""));
+        user.setCredit(sp.getBoolean("iscredit",false));
+        return user;
+    }
 }
