@@ -6,9 +6,11 @@
     android:orientation="vertical">
 
     <cn.cndoppler.p2p.ui.CommonTitleView
+        android:id="@+id/titleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title_context="个人信息"
+        app:show_right = "true"
         >
     </cn.cndoppler.p2p.ui.CommonTitleView>
 

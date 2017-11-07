@@ -114,7 +114,8 @@ public class BaseActivity extends AppCompatActivity
         SharedPreferences sp = this.getSharedPreferences("user_info", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("name",user.getName());
-        editor.putString("imageurl",user.getImageurl());
+        String imgName = user.getImageurl().substring(user.getImageurl().lastIndexOf("/"),user.getImageurl().length());
+        editor.putString("imageurl",AppNetConfig.BASE_URL+"/images"+imgName);
         editor.putBoolean("iscredit", user.isCredit());
         editor.putString("phone",user.getPhone());
         editor.commit();//必须提交，否则保存不成功

@@ -4,28 +4,38 @@ package cn.cndoppler.p2p.fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.loopj.android.http.RequestParams;
 
+import java.io.File;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import butterknife.OnClick;
 import cn.cndoppler.p2p.R;
+import cn.cndoppler.p2p.activity.ChongZhiActivity;
 import cn.cndoppler.p2p.activity.LoginActivity;
+import cn.cndoppler.p2p.activity.UserInfoActivity;
 import cn.cndoppler.p2p.bean.User;
 import cn.cndoppler.p2p.common.BaseActivity;
 import cn.cndoppler.p2p.common.BaseFragment;
+import cn.cndoppler.p2p.ui.CommonTitleView;
+import cn.cndoppler.p2p.util.BitmapUtils;
+import cn.cndoppler.p2p.util.UIUtils;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,15 +61,59 @@ public class MeFragment extends BaseFragment {
     TextView llTouziZhiguan;
     @BindView(R.id.ll_zichan)
     TextView llZichan;
-    Unbinder unbinder;
+    @BindView(R.id.titleView)
+    CommonTitleView titleView;
 
     public MeFragment() {
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //读取本地保存的图片
+        readImage();
+    }
+
+    private boolean readImage() {
+        File fileDir = null;
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+            //判断sd卡是否挂载
+            //路径1：storage/sdcard/Android/data/包名/files
+            fileDir = getActivity().getExternalFilesDir("");
+        }else{
+            //手机内部存储
+            //路径：data/data/包名/files
+            fileDir = getActivity().getFilesDir();
+        }
+        File file = new File(fileDir,"icon.png");
+        if (file.exists()){
+            //存储--->内存
+            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+            ivMeIcon.setImageBitmap(bitmap);
+            return true;
+        }
+        return false;
     }
 
     @Override
     protected void initData(String content) {
         //判断用户是否已经登录
         isLogin();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setListener();
+    }
+
+    private void setListener() {
+        titleView.setRightListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((BaseActivity)getActivity()).openActivity(UserInfoActivity.class);
+            }
+        });
     }
 
     private void isLogin() {
@@ -81,7 +135,12 @@ public class MeFragment extends BaseFragment {
         User user = ((BaseActivity) this.getActivity()).readUser();
         //2.获取对象信息，并设置给相应的视图显示。
         tvMeName.setText(user.getName());
-        Glide.with(this.getActivity()).load(user.getImageurl()).into(ivMeIcon);
+        //判断本地是否已经保存头像的图片，如果有，则不再执行联网操作
+        boolean isExist = readImage();
+        if(isExist){
+            return;
+        }
+        Glide.with(this.getActivity()).load(user.getImageurl()).asBitmap().transform(new MyTransformation(getActivity())).into(ivMeIcon);
     }
 
     //给出提示：登录
@@ -115,17 +174,39 @@ public class MeFragment extends BaseFragment {
         return R.layout.fragment_me;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
+    class MyTransformation extends BitmapTransformation {
+
+
+        public MyTransformation(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected Bitmap transform(BitmapPool pool, Bitmap toTransform, int outWidth, int outHeight) {
+            //压缩处理
+            Bitmap bitmap = BitmapUtils.zoom(toTransform, UIUtils.dp2px(100), UIUtils.dp2px(100));
+            //圆形处理
+            bitmap = BitmapUtils.circleBitmap(bitmap);
+            //回收bitmap资源
+            toTransform.recycle();
+            return bitmap;
+        }
+
+        @Override
+        public String getId() {
+            return "";//需要保证返回值不能为null。否则报错
+        }
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+    //设置“充值”操作
+    @OnClick(R.id.recharge)
+    public void reCharge(View view){
+        ((BaseActivity)this.getActivity()).openActivity(ChongZhiActivity.class);
+    }
+
+    //设置“提现”操作
+    @OnClick(R.id.withdraw)
+    public void withdraw(View view){
+
     }
 }
