@@ -60,7 +60,6 @@ public class UserInfoActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
         ButterKnife.bind(this);
-        ActivityManager.getInstance().add(this);
         setListener();
     }
 

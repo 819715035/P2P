@@ -28,6 +28,7 @@ public class BaseActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         // 去掉窗口标题
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        ActivityManager.getInstance().add(this);
     }
 
     /**

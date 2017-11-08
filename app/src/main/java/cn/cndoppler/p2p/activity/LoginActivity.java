@@ -52,7 +52,6 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        ActivityManager.getInstance().add(this);
 
     }
 

@@ -27,6 +27,10 @@ dependencies {
     //最新版本
     compile files('libs/android-async-http-master.jar')
     compile files('libs/fastjson-1.2.4.jar')
+    compile files('libs/alipaysdk.jar')
+    compile files('libs/alipaysecsdk.jar')
+    compile files('libs/alipayutdid.jar')
+    compile project(':MPChartLib')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.jakewharton:butterknife:8.8.1'
@@ -37,7 +41,22 @@ dependencies {
     compile 'pub.devrel:easypermissions:1.0.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    compile files('libs/alipaysdk.jar')
-    compile files('libs/alipaysecsdk.jar')
-    compile files('libs/alipayutdid.jar')
+    compile project(path: ':GestureLock')
+    compile files('libs/MobCommons-2017.1024.1907.jar')
+    compile files('libs/MobTools-2017.1024.1907.jar')
+    compile files('libs/ShareSDK-Alipay-3.1.1.jar')
+    compile files('libs/ShareSDK-Alipay-Core-3.1.1.jar')
+    compile files('libs/ShareSDK-Alipay-Moments-3.1.1.jar')
+    compile files('libs/ShareSDK-Core-3.1.1.jar')
+    compile files('libs/ShareSDK-Email-3.1.1.jar')
+    compile files('libs/ShareSDK-QQ-3.1.1.jar')
+    compile files('libs/ShareSDK-QZone-3.1.1.jar')
+    compile files('libs/ShareSDK-Renren-3.1.1.jar')
+    compile files('libs/ShareSDK-ShortMessage-3.1.1.jar')
+    compile files('libs/ShareSDK-SinaWeibo-3.1.1.jar')
+    compile files('libs/ShareSDK-TencentWeibo-3.1.1.jar')
+    compile files('libs/ShareSDK-Wechat-3.1.1.jar')
+    compile files('libs/ShareSDK-Wechat-Core-3.1.1.jar')
+    compile files('libs/ShareSDK-Wechat-Favorite-3.1.1.jar')
+    compile files('libs/ShareSDK-Wechat-Moments-3.1.1.jar')
 }

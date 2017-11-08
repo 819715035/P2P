@@ -30,7 +30,6 @@ public class WelcomeActivity extends BaseActivity {
         // 隐藏顶部的状态栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_welcome);
-        ActivityManager.getInstance().add(this);
         ButterKnife.bind(this);
     }
 

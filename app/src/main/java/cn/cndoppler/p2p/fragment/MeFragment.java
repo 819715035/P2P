@@ -27,8 +27,13 @@ import java.io.File;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.cndoppler.p2p.R;
+import cn.cndoppler.p2p.activity.BarChartActivity;
 import cn.cndoppler.p2p.activity.ChongZhiActivity;
+import cn.cndoppler.p2p.activity.GestureVerifyActivity;
+import cn.cndoppler.p2p.activity.LineChartActivity;
 import cn.cndoppler.p2p.activity.LoginActivity;
+import cn.cndoppler.p2p.activity.PieChartActivity;
+import cn.cndoppler.p2p.activity.TiXianActivity;
 import cn.cndoppler.p2p.activity.UserInfoActivity;
 import cn.cndoppler.p2p.bean.User;
 import cn.cndoppler.p2p.common.BaseActivity;
@@ -141,6 +146,13 @@ public class MeFragment extends BaseFragment {
             return;
         }
         Glide.with(this.getActivity()).load(user.getImageurl()).asBitmap().transform(new MyTransformation(getActivity())).into(ivMeIcon);
+        //判断一下，是否开启了手势密码。如果开启：先输入手势密码
+        SharedPreferences sp = this.getActivity().getSharedPreferences("secret_protect", Context.MODE_PRIVATE);
+        boolean isOpen = sp.getBoolean("isOpen", false);
+        if(isOpen){
+            ((BaseActivity)this.getActivity()).openActivity(GestureVerifyActivity.class);
+            return;
+        }
     }
 
     //给出提示：登录
@@ -207,6 +219,22 @@ public class MeFragment extends BaseFragment {
     //设置“提现”操作
     @OnClick(R.id.withdraw)
     public void withdraw(View view){
+        ((BaseActivity)getActivity()).openActivity(TiXianActivity.class);
+    }
 
+    //启动折线图
+    @OnClick(R.id.ll_touzi)
+    public void startLineChart(View view){
+        ((BaseActivity)this.getActivity()).openActivity(LineChartActivity.class);
+    }
+    //启动折线图
+    @OnClick(R.id.ll_touzi_zhiguan)
+    public void startBarChart(View view){
+        ((BaseActivity)this.getActivity()).openActivity(BarChartActivity.class);
+    }
+    //启动折线图
+    @OnClick(R.id.ll_zichan)
+    public void startPieChart(View view){
+        ((BaseActivity)this.getActivity()).openActivity(PieChartActivity.class);
     }
 }
