@@ -24,8 +24,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <!-- mob分享添加必要的权限 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -36,6 +36,7 @@
 
     <!-- 短信验证登陆功能需要添加次权限来自动填充验证码，用不到可以去掉 -->
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
     <application
         android:name=".common.MyApplication"
         android:allowBackup="true"
@@ -44,6 +45,21 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <provider
+
+            android:name="android.support.v4.content.FileProvider"
+
+            android:authorities="cn.cndoppler.p2p.fileProvider"
+
+            android:grantUriPermissions="true"
+
+            android:exported="false">
+            <meta-data
+
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+
+        </provider>
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.WelcomeActivity">
             <intent-filter>
@@ -69,19 +85,22 @@
         <activity android:name=".activity.LineChartActivity" />
         <activity android:name=".activity.BarChartActivity" />
         <activity android:name=".activity.PieChartActivity" />
-        <activity android:name=".activity.UserRegistActivity"></activity>
-        <activity android:name=".activity.GestureEditActivity"></activity>
-        <activity android:name=".activity.GestureVerifyActivity"></activity>
+        <activity android:name=".activity.UserRegistActivity" />
+        <activity android:name=".activity.GestureEditActivity" />
+        <activity android:name=".activity.GestureVerifyActivity" />
         <!-- ShareSDK的activity -->
         <activity
             android:name="com.mob.tools.MobUIShell"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
-            <!-- ShareSDK3.1.0版本之前才需要在MobUIShell下面注册此意图，3.1.0版本之后（包含3.1.0）不需要注册此intent-->
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
+            <!-- ShareSDK3.1.0版本之前才需要在MobUIShell下面注册此意图，3.1.0版本之后（包含3.1.0）不需要注册此intent -->
             <intent-filter>
                 <data android:scheme="tencent100371282" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -89,38 +108,48 @@
             <!-- 调用新浪原生SDK，需要注册的回调activity -->
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
-            <!--集成line客户端登录授权，需要添如下格式的过滤器-->
+            <!-- 集成line客户端登录授权，需要添如下格式的过滤器 -->
             <intent-filter>
                 <data android:scheme="line.1477692153" />
-                <action android:name="android.intent.action.VIEW"/>
+
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
         <!-- 填写您从Mob开发者后台中得到的Appkey和AppSecret -->
-        <meta-data android:name="Mob-AppKey" android:value="2238bc18cb548"/>
-        <meta-data android:name="Mob-AppSecret" android:value="68e99b323b9e87286d594d93dae09d94"/>
+        <meta-data
+            android:name="Mob-AppKey"
+            android:value="2238bc18cb548" />
+        <meta-data
+            android:name="Mob-AppSecret"
+            android:value="68e99b323b9e87286d594d93dae09d94" />
+
         <activity
             android:name="cn.sharesdk.tencent.qq.ReceiveActivity"
             android:launchMode="singleTask"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="tencent100371282" />
             </intent-filter>
         </activity>
         <activity
             android:name=".wxapi.WXEntryActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".activity.GuiGuInvestActivity"></activity>
     </application>
 
 </manifest>

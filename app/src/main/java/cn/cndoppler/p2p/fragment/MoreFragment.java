@@ -33,6 +33,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.cndoppler.p2p.R;
 import cn.cndoppler.p2p.activity.GestureEditActivity;
+import cn.cndoppler.p2p.activity.GuiGuInvestActivity;
 import cn.cndoppler.p2p.activity.UserRegistActivity;
 import cn.cndoppler.p2p.common.AppNetConfig;
 import cn.cndoppler.p2p.common.BaseActivity;
@@ -95,6 +96,18 @@ public class MoreFragment extends BaseFragment implements EasyPermissions.Permis
 
         //分享
         share();
+
+        //关于硅谷理财
+        aboutInvest();
+    }
+
+    private void aboutInvest() {
+        tvMoreAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((BaseActivity) MoreFragment.this.getActivity()).openActivity(GuiGuInvestActivity.class);
+            }
+        });
     }
 
     private void userResgist() {
