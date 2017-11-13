@@ -52,8 +52,7 @@ public class ProductHotFragment extends BaseFragment {
             int padding = UIUtils.dp2px(5);
             tv.setPadding(padding, padding, padding, padding);//设置内边距
 
-            tv.setTextSize(UIUtils.dp2px(10));
-
+            tv.setTextSize(12);
             Random random = new Random();
             int red = random.nextInt(211);
             int green = random.nextInt(211);
